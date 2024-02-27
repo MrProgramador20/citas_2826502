@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 migrate =   Migrate(app, db)
 
 ##importar modelos
-from .models import Doctores
+from .models import Paciente, Medico, Consultorio, Cita
 
 ##ejecutar el objeto
 if __name__ == '__main__':
