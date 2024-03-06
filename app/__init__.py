@@ -17,6 +17,9 @@ migrate =   Migrate(app, db)
 ##importar modelos
 from .models import Paciente, Medico, Consultorio, Cita
 
+#importar las rutas
+from . import routes
+
 ##ejecutar el objeto
 if __name__ == '__main__':
     app.run()
