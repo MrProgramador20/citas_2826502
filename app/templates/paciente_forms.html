@@ -8,22 +8,22 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Nuevo Medico</h1>
+    <h1>Nuevo Paciente</h1>
     <form method="post" action="">
         <p>nombres: <input class="form-control" type="text" name="nombre"></p>
         <p>apellidos: <input class="form-control" type="text" name="apellido"></p>
         <p>tipo_identificacion: 
-            <select class="form-control" name="ti" id="">
+            <select  class="form-control" name="ti" id="">
                 <option>TI</option>
                 <option>CC</option>
             </select>
         </p>
         <p>numero_identificacion: <input class="form-control" type="text" name="ni"></p>
-        <p>registro_medico: <input class="form-control" type="text" name="rm"></p>
-        <p>especialidad:
-            <select class="form-control" name="es">
-                {% for especialidad in especialidades %}
-                    <option> {{ especialidad }} </option>
+        <p>altura: <input class="form-control" type="text" name="alt"></p>
+        <p>tipo_sangre:
+            <select class="form-control" name="ts">
+                {% for tipo_sangre in tipo_sangre %}
+                    <option> {{ tipo_sangre }} </option>
                 {% endfor %}
             </select>
         </p>

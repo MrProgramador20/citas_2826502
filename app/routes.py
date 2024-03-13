@@ -35,12 +35,6 @@ def get_paciente_by_id(id):
     paciente = Paciente.query.get(id)
     return render_template("paciente.html", pac = paciente)
 
-@app.route("/citas/<int:id>")
-def get_cita_by_id(id):
-    #return "id del medico" + str(id)
-    cita = Cita.query.get(id)
-    return render_template("cita.html", cit = cita)
-
 #ruta para crear nuevo medico
 @app.route("/medicos/create", methods = ["GET", "POST"])
 def create_medico():
@@ -50,11 +44,20 @@ def create_medico():
     ]
         return render_template("medico_form.html", especialidades = especialidades) 
     elif(request.method == "POST"):
-         request.form["es"]
-    elif(request.method == "POST"):
-        new_medico =  Medico(nombre = request.form["nombre"], apellido = request.form["apellido"], tipo_identificacion = request.form["ti"], numero_identificacion = request.form["ni"], registro_medico = request.form["rm"], especialidad = request.form["es"])
+        new_medico =  Medico(nombres = request.form["nombre"], apellidos = request.form["apellido"], tipo_identificacion = request.form["ti"], numero_identificacion = request.form["ni"], registro_medico = request.form["rm"], especialidad = request.form["es"]) 
         db.session.add(new_medico)
         db.session.commit()
         return "medico registrado"
 
-
+@app.route("/pacientes/create", methods = ["GET", "POST"])
+def create_paciente():
+    if(request.method == "GET" ):
+        tipo_sangre = [
+        "A+", "O+", "B+", "AB"
+    ]
+        return render_template("paciente_forms.html", tipo_sangre = tipo_sangre) 
+    elif(request.method == "POST"):
+        new_paciente =  Paciente(nombres = request.form["nombre"], apellidos = request.form["apellido"], tipo_identificacion = request.form["ti"], numero_identificacion = request.form["ni"], altura = request.form["alt"], tipo_sangre = request.form["ts"]) 
+        db.session.add(new_paciente)
+        db.session.commit()
+        return "paciente registrado"
