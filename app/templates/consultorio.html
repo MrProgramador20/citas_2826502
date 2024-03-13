@@ -3,24 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Consultorio</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Lista de Consultorio</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Numero Consultorio</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for consultorio in consultorios %}
-                <tr>
-                    <td> {{  consultorio.numero   }} </td>
-                </tr>
-            {% endfor%}
-        </tbody>
-        <tfoot></tfoot>
-    </table>
+    <h1>detalle del consultorio</h1>
+    <ul>
+        <li>numero: {{ con.numero }}</li>
+    </ul>    
 </body>
 </html>

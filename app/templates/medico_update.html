@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/stylec.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Actualizar Medico</h1>
+    <form method="post" action="/medicos/update/{{medico_update.id}}">
+        <p>nombres: <input class="form-control" type="text" name="nombre" value="{{ medico_update.nombres }}"></p>
+        <p>apellidos: <input class="form-control" type="text" name="apellido" value="{{ medico_update.apellidos }}"></p>
+        <p>tipo_identificacion: 
+            <select class="form-control" name="ti" id="">
+                <option
+                    {% if medico_update.tipo_identificacion == "TI" %}
+                       selected
+                    {% endif %}>
+                        TI
+                </option>
+                <option 
+                {% if medico_update.tipo_identificacion == "CC" %}
+                    selected
+                {% endif %}>
+                CC
+            </option>
+            </select>
+        </p>
+        <p>numero_identificacion: <input class="form-control" type="text" name="ni" value="{{medico_update.numero_identificacion}}"></p>
+        <p>registro_medico: <input class="form-control" type="text" name="rm" value="{{ medico_update.registro_medico }}"></p>
+        <p>especialidad:
+            <select class="form-control" name="es">
+                {% for especialidad in especialidades %}
+                    <option
+                        {% if medico_update.especialidades == especialidades %}
+                            selected
+                        {% endif %}    
+                    > {{ especialidad }} </option>
+                {% endfor %}
+            </select>
+        </p>
+        <button class="btn btn-primary" type="sumbit">Actualizar</button>
+
+    </form>
+</body>
+</html>
