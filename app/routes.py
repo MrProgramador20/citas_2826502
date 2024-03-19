@@ -88,7 +88,8 @@ def create_consultorio():
         db.session.commit()
         return "consultorio registrado"
     
-    
+#Actualizacion y eliminacion de Medico    
+
 @app.route("/medicos/update/<int:id>", methods = ["POST","GET"])
 def update_medico(id):
     especialidades = [
@@ -113,3 +114,44 @@ def delete_medico(id):
     db.session.delete(medico_delete)
     db.session.commit()
     return redirect("/medicos")
+
+#Actualizacion y eliminacion de Paciente
+
+@app.route("/pacientes/update/<int:id>", methods = ["POST","GET"])
+def update_paciente(id):
+    tipo_sangre = [
+        "A+", "O+", "B+", "AB"
+    ]
+    paciente_update = Paciente.query.get(id)
+    if(request.method == "GET"):
+        return render_template("paciente_update.html", paciente_update = paciente_update , tipo_sangre = tipo_sangre)
+    elif(request.method == "POST"):
+        paciente_update.nombres =  request.form["nombre"]
+        paciente_update.apellidos =  request.form["apellido"]
+        paciente_update.tipo_identificacion =  request.form["ti"]
+        paciente_update.numero_identificacion =  request.form["ni"]
+        paciente_update.altura =  request.form["alt"]
+        paciente_update.tipo_sangre =  request.form["ts"]
+        db.session.commit()
+        return "Paciente Actualizado"
+    
+@app.route("/pacientes/delete/<int:id>")
+def delete_paciente(id):
+    paciente_delete = Paciente.query.get(id)
+    db.session.delete(paciente_delete)
+    db.session.commit()
+    return redirect("/pacientes")
+
+#Actualizacion y eliminacion de Consultorio
+@app.route("/consultorios/update/<int:id>", methods = ["POST","GET"])
+def update_consultorio(id):
+    numero = [
+        "201", "301", "401", "501", "502", "402", "302", "202"
+    ]
+    consultorio_update = Consultorio.query.get(id)
+    if(request.method == "GET"):
+        return render_template("consultorio_update.html", consultorio_update = consultorio_update , numero = numero)
+    elif(request.method == "POST"):
+        consultorio_update.numero =  request.form["num"]
+    db.session.commit()
+    return "Consultorio Actualizado"
