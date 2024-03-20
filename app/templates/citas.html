@@ -17,6 +17,8 @@
                 <th>Medico id</th>
                 <th>Consultorio id</th>
                 <th>Valor</th>
+                <th>Ver detalles</th>
+                <th>Actualizar</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +34,10 @@
                             Ver Detalles
                         </a>
                     </td>
+                    <a href="/citas/update/{{ cita.id }}">
+                        Actualizares
+                    </a>
+                </td>
 
                 </tr>
             {% endfor%}

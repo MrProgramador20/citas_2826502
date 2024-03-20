@@ -155,3 +155,27 @@ def update_consultorio(id):
         consultorio_update.numero =  request.form["num"]
     db.session.commit()
     return "Consultorio Actualizado"
+
+@app.route("/consultorios/delete/<int:id>")
+def delete_consultorios(id):
+    consultorio_delete = Consultorio.query.get(id)
+    db.session.delete(consultorio_delete)
+    db.session.commit()
+    return redirect("/consultorios")
+
+#Actualizacion y eliminacion de Citas
+@app.route("/citas/update/<int:id>", methods = ["POST","GET"])
+def update_cita(id):
+    cita_update = Cita.query.get(id)
+    if(request.method == "GET"):
+        return render_template("cita_update.html", cita_update = cita_update)
+    elif(request.method == "POST"):
+        cita_update.fecha =  request.form["fec"]
+        cita_update.paciente_id =  request.form["pid"]
+        cita_update.medico_id =  request.form["mid"]
+        cita_update.consultorio_id =  request.form["cid"]
+        cita_update.valor =  request.form["val"]
+        db.session.commit()
+        return "Cita Actualizado"
+    
+
